@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://kli-util-v1.x-road.ee/producer" xmlns:wsdl="http://www.w3.org/ns/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xrd="http://x-road.ee/xsd/x-road.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://kli-util-v1.x-road.ee/producer">
+	<types>
+		<schema targetNamespace="http://kli-util-v1.x-road.ee/producer" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://x-road.ee/xsd/x-road.xsd" schemaLocation="http://x-road.ee/xsd/x-road.xsd"/>
+			<import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+			<element name="personLookup">
+				<complexType>
+					<sequence>
+						<element name="request">
+							<complexType>
+								<sequence>
+									<element minOccurs="1" maxOccurs="1" name="id" type="int">
+										<annotation>
+											<appinfo>
+												<xrd:title xml:lang="en">Id of the person requested</xrd:title>
+											</appinfo>
+										</annotation>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="personLookupResponse">
+				<complexType>
+					<sequence>
+						<element name="request">
+							<complexType>
+								<sequence>
+									<element minOccurs="1" maxOccurs="1" name="id" type="int"/>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="response">
+							<complexType>
+								<sequence>
+									<element name="faultCode" type="xrd:faultCode" nillable="true"/>
+									<element name="faultString" type="xrd:faultString" nillable="true"/>
+									<element minOccurs="0" maxOccurs="1" name="PersonLookupResponse" type="tns:Person">
+										<annotation>
+											<appinfo>
+												<xrd:title xml:lang="en">Person data</xrd:title>
+											</appinfo>
+										</annotation>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+			<complexType name="Person">
+				<sequence>
+					<element minOccurs="1" maxOccurs="1" name="Id" type="int"/>
+					<element minOccurs="0" maxOccurs="1" name="FullName" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="EmailAddress" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="WorkAddress" type="tns:Address"/>
+				</sequence>
+			</complexType>
+			<complexType name="Address">
+				<sequence>
+					<element minOccurs="0" maxOccurs="1" name="AddressLine1" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="AddressLine2" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="City" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="ZipCode" type="string"/>
+					<element minOccurs="0" maxOccurs="1" name="Country" type="string"/>
+				</sequence>
+			</complexType>
+		</schema>
+	</types>
+	<message name="personLookupSoapIn">
+		<part name="body" element="tns:personLookup"/>
+	</message>
+	<message name="personLookupSoapOut">
+		<part name="body" element="tns:personLookupResponse"/>
+	</message>
+	<message name="listMethods">
+		<part name="body" element="xrd:listMethods"/>
+	</message>
+	<message name="listMethodsResponse">
+		<part name="body" element="xrd:listMethodsResponse"/>
+	</message>
+	<message name="testSystem">
+		<part name="body" element="xrd:testSystem"/>
+	</message>
+	<message name="testSystemResponse">
+		<part name="body" element="xrd:testSystemResponse"/>
+	</message>
+	<message name="standardheader">
+		<part name="consumer" element="xrd:consumer"/>
+		<part name="producer" element="xrd:producer"/>
+		<part name="userId" element="xrd:userId"/>
+		<part name="service" element="xrd:service"/>
+		<part name="id" element="xrd:id"/>
+	</message>
+	<portType name="ServiceSoap">
+		<operation name="personLookup">
+			<documentation>
+				<xrd:title>Lookup person details by Id</xrd:title>
+			</documentation>
+			<input message="tns:personLookupSoapIn"/>
+			<output message="tns:personLookupSoapOut"/>
+		</operation>
+		<operation name="listMethods">
+			<documentation>
+				<xrd:title>listMethods</xrd:title>
+			</documentation>
+			<input message="tns:listMethods"/>
+			<output message="tns:listMethodsResponse"/>
+		</operation>
+		<operation name="testSystem">
+			<documentation>
+				<xrd:title>testSystem</xrd:title>
+			</documentation>
+			<input message="tns:testSystem"/>
+			<output message="tns:testSystemResponse"/>
+		</operation>
+	</portType>
+	<binding name="ServiceSoap" type="tns:ServiceSoap">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="personLookup">
+			<soap:operation soapAction="personLookup" style="document"/>
+			<xrd:version>v1</xrd:version>
+			<input>
+				<soap:body parts="body" use="literal"/>
+				<soap:header message="tns:standardheader" part="consumer" use="literal"/>
+				<soap:header message="tns:standardheader" part="producer" use="literal"/>
+				<soap:header message="tns:standardheader" part="userId" use="literal"/>
+				<soap:header message="tns:standardheader" part="id" use="literal"/>
+				<soap:header message="tns:standardheader" part="service" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="body" use="literal"/>
+				<soap:header message="tns:standardheader" part="consumer" use="literal"/>
+				<soap:header message="tns:standardheader" part="producer" use="literal"/>
+				<soap:header message="tns:standardheader" part="userId" use="literal"/>
+				<soap:header message="tns:standardheader" part="id" use="literal"/>
+				<soap:header message="tns:standardheader" part="service" use="literal"/>
+			</output>
+		</operation>
+		<operation name="listMethods">
+			<soap:operation soapAction="listMethods" style="document"/>
+			<input>
+				<soap:body parts="body" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="body" use="literal"/>
+			</output>
+		</operation>
+		<operation name="testSystem">
+			<soap:operation soapAction="testSystem" style="document"/>
+			<input>
+				<soap:body parts="body" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="body" use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="Service">
+		<port name="ServiceSoap" binding="tns:ServiceSoap">
+			<soap:address location="http://securityserver/cgi-bin/consumer_proxy"/>
+			<xrd:address producer="kli-util-v1"/>
+			<xrd:title>Ein okkurt-webservice hjá Talgildu.fo</xrd:title>
+		</port>
+	</service>
+</definitions>
