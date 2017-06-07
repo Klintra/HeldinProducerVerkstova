@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://kli-util-v1.x-road.ee/producer" xmlns:wsdl="http://www.w3.org/ns/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xrd="http://x-road.ee/xsd/x-road.xsd" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://kli-util-v1.x-road.ee/producer">
+<definitions 
+	xmlns="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:tns="http://kli-util-v1.x-road.ee/producer" 
+	xmlns:wsdl="http://www.w3.org/ns/wsdl" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xrd="http://x-road.ee/xsd/x-road.xsd" 
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+	targetNamespace="http://kli-util-v1.x-road.ee/producer">
 	<types>
 		<schema targetNamespace="http://kli-util-v1.x-road.ee/producer" xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://x-road.ee/xsd/x-road.xsd" schemaLocation="http://x-road.ee/xsd/x-road.xsd"/>
@@ -10,13 +19,7 @@
 						<element name="request">
 							<complexType>
 								<sequence>
-									<element minOccurs="1" maxOccurs="1" name="id" type="int">
-										<annotation>
-											<appinfo>
-												<xrd:title xml:lang="en">Id of the person requested</xrd:title>
-											</appinfo>
-										</annotation>
-									</element>
+									<element minOccurs="1" maxOccurs="1" name="id" type="int"/>
 								</sequence>
 							</complexType>
 						</element>
@@ -38,13 +41,7 @@
 								<sequence>
 									<element name="faultCode" type="xrd:faultCode" nillable="true"/>
 									<element name="faultString" type="xrd:faultString" nillable="true"/>
-									<element minOccurs="0" maxOccurs="1" name="PersonLookupResponse" type="tns:Person">
-										<annotation>
-											<appinfo>
-												<xrd:title xml:lang="en">Person data</xrd:title>
-											</appinfo>
-										</annotation>
-									</element>
+									<element minOccurs="0" maxOccurs="1" name="PersonLookupResponse" type="tns:Person"/>
 								</sequence>
 							</complexType>
 						</element>
@@ -98,23 +95,14 @@
 	</message>
 	<portType name="ServiceSoap">
 		<operation name="personLookup">
-			<documentation>
-				<xrd:title>Lookup person details by Id</xrd:title>
-			</documentation>
 			<input message="tns:personLookupSoapIn"/>
 			<output message="tns:personLookupSoapOut"/>
 		</operation>
 		<operation name="listMethods">
-			<documentation>
-				<xrd:title>listMethods</xrd:title>
-			</documentation>
 			<input message="tns:listMethods"/>
 			<output message="tns:listMethodsResponse"/>
 		</operation>
 		<operation name="testSystem">
-			<documentation>
-				<xrd:title>testSystem</xrd:title>
-			</documentation>
 			<input message="tns:testSystem"/>
 			<output message="tns:testSystemResponse"/>
 		</operation>
@@ -122,7 +110,7 @@
 	<binding name="ServiceSoap" type="tns:ServiceSoap">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="personLookup">
-			<soap:operation soapAction="personLookup" style="document"/>
+			<soap:operation soapAction="" style="document"/>
 			<xrd:version>v1</xrd:version>
 			<input>
 				<soap:body parts="body" use="literal"/>
@@ -142,7 +130,7 @@
 			</output>
 		</operation>
 		<operation name="listMethods">
-			<soap:operation soapAction="listMethods" style="document"/>
+			<soap:operation soapAction="" style="document"/>
 			<input>
 				<soap:body parts="body" use="literal"/>
 			</input>
@@ -151,7 +139,7 @@
 			</output>
 		</operation>
 		<operation name="testSystem">
-			<soap:operation soapAction="testSystem" style="document"/>
+			<soap:operation soapAction="" style="document"/>
 			<input>
 				<soap:body parts="body" use="literal"/>
 			</input>

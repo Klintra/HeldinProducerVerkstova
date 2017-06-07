@@ -61,6 +61,9 @@ public class ServiceSoapImpl implements ServiceSoap {
     public void personLookup(ee.x_road.kli_util_v1.producer.PersonLookup.Request request, java.lang.String consumer, java.lang.String producer, java.lang.String userId, java.lang.String id, java.lang.String service, javax.xml.ws.Holder<ee.x_road.kli_util_v1.producer.PersonLookupResponse.Request> request1, javax.xml.ws.Holder<ee.x_road.kli_util_v1.producer.PersonLookupResponse.Response> response, javax.xml.ws.Holder<java.lang.String> consumer1, javax.xml.ws.Holder<java.lang.String> producer1, javax.xml.ws.Holder<java.lang.String> userId1, javax.xml.ws.Holder<java.lang.String> id1, javax.xml.ws.Holder<java.lang.String> service1) { 
         LOG.info("Executing operation personLookup");
         try {
+        	// Dømið manglar handfaring av exceptions. 
+        	// Harumframt eigur tænastan at tryggja at "id"-virðið ikki er brúkt áður
+        	
         	consumer1.value = consumer;
         	producer1.value = producer;
         	userId1.value = userId;
