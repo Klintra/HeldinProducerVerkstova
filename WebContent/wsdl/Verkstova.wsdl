@@ -2,16 +2,16 @@
 <definitions 
 	xmlns="http://schemas.xmlsoap.org/wsdl/" 
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-	xmlns:tns="http://kli-util-v1.x-road.ee/producer" 
+	xmlns:tns="http://kli-util-v1.x-road.eu/producer" 
 	xmlns:wsdl="http://www.w3.org/ns/wsdl" 
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
 	xmlns:xrd="http://x-road.eu/xsd/x-road.xsd" 
 	xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
 	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
-	targetNamespace="http://kli-util-v1.x-road.ee/producer">
+	targetNamespace="http://kli-util-v1.x-road.eu/producer">
 	<types>
-		<schema targetNamespace="http://kli-util-v1.x-road.ee/producer" xmlns="http://www.w3.org/2001/XMLSchema">
-			<import namespace="http://x-road.eu/xsd/x-road.xsd" schemaLocation="https://repository.heldin.fo/xsd/x-road.xsd"/>
+		<schema targetNamespace="http://kli-util-v1.x-road.eu/producer" xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://x-road.eu/xsd/x-road.xsd" schemaLocation="http://repository.heldin.fo/xsd/x-road.xsd"/>
 			<import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
 			<element name="personLookup">
 				<complexType>
