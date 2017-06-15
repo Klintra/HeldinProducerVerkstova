@@ -9,4 +9,4 @@ Kodan í hesum Java-dømi er skriva til
 
 Kodan er generera ut frá WSDL-fíluni við hesi Apache CXF kommando:
 
-    apache-cxf-3.1.11\bin\wsdl2java.bat -d src -p http://kli-util-v1.x-road.ee/producer=ee.x_road.kli_util_v1.producer -impl -validate -exsh true -dns true -dex true -autoNameResolution -verbose -defaultValues -fe jaxws21 -db jaxb -wv 1.1 WebContent\wsdl\Verkstova.wsdl
+    apache-cxf-3.1.11\bin\wsdl2java.bat -d src -p http://kli-util-v1.x-road.eu/producer=eu.x_road.kli_util_v1.producer -impl -validate -exsh true -dns true -dex true -autoNameResolution -verbose -defaultValues -fe jaxws21 -db jaxb -wv 1.1 WebContent\wsdl\Verkstova.wsdl
